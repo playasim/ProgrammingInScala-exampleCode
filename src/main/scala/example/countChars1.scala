@@ -1,3 +1,4 @@
+/*
 import scala.io.Source
 
 def widthOfLength(s: String) = s.length.toString.length
@@ -17,3 +18,4 @@ if (args.length > 0) {
 else
   Console.err.println("Enter filename")
 
+*/

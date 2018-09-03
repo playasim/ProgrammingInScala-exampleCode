@@ -1,3 +1,4 @@
+/*
 import scala.io.Source
 
 if (args.length > 0) {
@@ -7,3 +8,4 @@ if (args.length > 0) {
 else
   Console.err.println("Please enter the name")
 
+*/
