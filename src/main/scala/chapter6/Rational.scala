@@ -12,10 +12,38 @@ class Rational(n: Int, d: Int) {
   //辅助构造方法
   def this(n: Int) = this(n, 1)
   //重写toString
-  override def toString: String = n + "/" + d
+  override def toString: String = {
+    if(number % denom != 0) number + "/" + denom
+    else (number / denom).toString
+  }
   //定义有理数加法
   def add(that: Rational): Rational = {
-    new Rational(n * that.denom + that.number * d, d * that.denom )
+    new Rational(number * that.denom + that.number * denom, denom * that.denom )
+  }
+  def +(that: Rational): Rational = {
+    new Rational(number * that.denom + that.number * denom, denom * that.denom )
+  }
+  def +(that: Int): Rational = {
+    new Rational(that * denom + number, denom)
+  }
+  def -(that: Rational): Rational = {
+    new Rational(number * that.denom - that.number * denom, denom * that.denom)
+  }
+  def -(that: Int): Rational = {
+    new Rational(number - that * denom, denom)
+  }
+  def *(that: Rational): Rational = {
+    new Rational(number * that.number, denom * that.denom)
+  }
+  def *(that: Int): Rational = {
+    new Rational(number * that, denom)
+  }
+  def /(that: Rational): Rational = {
+    new Rational(number * that.denom, denom * that.number)
+  }
+  def /(that: Int): Rational = {
+    require(that != 0)
+    new Rational(number, denom * that)
   }
   //定义小于方法
   def lessThan(that: Rational) = {

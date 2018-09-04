@@ -14,6 +14,10 @@ object Main extends App {
     args.foreach(arg => println(arg))
   }
 
+  val List1 = (1,2,3)
+  val List2 = (4,5,6)
+ /* val combineList = List1:::List2
+  print(combineList)*/
   def formatArgs(args: Array[String]) = args.mkString("\\")
   val res = Array("zero", "one", "two")
   println(formatArgs(res))
