@@ -1,10 +1,9 @@
 package chapter10
 
+import Element.elem
 /**
   **
-@Author Martin Ma
-  * @Date 2018/9/12
-  **/
+  */
 abstract class Element {
   def contents: Array[String]
   //width & height也可以是val
@@ -12,13 +11,22 @@ abstract class Element {
   def height: Int = contents.length
   def width: Int = if (height == 0) 0 else contents(0).length
   def above(that: Element) = {
-    new ArrayElement(this.contents ++ that.contents)
+    elem(this.contents ++ that.contents)//++拼接两个数组
   }
   def beside(that: Element) = {
-    val contents = new Array[String](this.contents.length)//假设高度一样
-    for (i <- 0 until this.contents.length)
-      contents(i) = this.contents(i) + that.contents(i)
-    new ArrayElement(contents)
+    for (
+      (line1, line2) <- this.contents zip that.contents
+    ) yield line1 + line2
+    def toString = contents mkString("\n")
+  }
+
+  def widen(w: Int): Element = {
+    if (w <= width) this
+    else {
+      val left = elem(' ', (w - width) / 2, height)
+      val right = elem(' ', w - width - left.width, height)
+      (left beside this) beside (right)
+    }
   }
 
 }
